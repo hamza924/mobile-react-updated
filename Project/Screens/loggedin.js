@@ -54,6 +54,11 @@ _loadState = async () =>{
 
 */
 
+
+/*
+Method used to post chitt using the token from when the 
+user has logged in
+ */
 handlepress = async () =>{
 
   //var val = await AsyncStorage.getItem('token');

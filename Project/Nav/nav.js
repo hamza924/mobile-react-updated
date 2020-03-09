@@ -5,6 +5,7 @@ import Home from '../Screens/main';
 import login from '../Screens/login';
 import signup from '../Screens/signup';
 import loggedin from '../Screens/loggedin';
+import GetChit from '../Screens/GetAllChit';
 
 
 
