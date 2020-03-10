@@ -7,6 +7,9 @@ import signup from '../Screens/signup';
 import loggedin from '../Screens/loggedin';
 import GetChit from '../Screens/GetAllChit';
 
+import GetUserChit from '../Screens/GetUserChit';
+
+
 
 
 const Screens = {
@@ -25,6 +28,9 @@ const Screens = {
 
     loggedin:{
         screen:loggedin
+    },
+    GetUserChit:{
+        screen:GetUserChit
     }
     
     

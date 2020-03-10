@@ -97,7 +97,7 @@ handlepress = async () =>{
       var ok = response.ok;
       if(ok){
            alert('200');
-          //this.props.navigation.navigate('loggedin');
+          this.props.navigation.navigate('GetUserChit');
       return response.text();
       }
       else{
