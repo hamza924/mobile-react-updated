@@ -8,6 +8,7 @@ import loggedin from '../Screens/loggedin';
 import GetChit from '../Screens/GetAllChit';
 
 import GetUserChit from '../Screens/GetUserChit';
+import Search from '../Screens/Search';
 
 
 
@@ -31,6 +32,9 @@ const Screens = {
     },
     GetUserChit:{
         screen:GetUserChit
+    },
+    Search:{
+        screen:Search
     }
     
     

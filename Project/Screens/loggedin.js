@@ -140,9 +140,7 @@ alert('Invalid email/Password');
     return(
 
       <View style = {styles.container}>
-        <Text style = {styles.text}>Welcome to the Chittr Mobile Assignment Logged in page</Text>
-
-      <Text >Your token is {this.state.token}</Text>
+        
 
       <Text style = {styles.text}>Upload a Chitt Below No more than 141 characters</Text>
 
@@ -161,6 +159,18 @@ alert('Invalid email/Password');
           onPress = {this.handlepress.bind(this)}  >
           <Text style={styles.customBtnText}>Send</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress={() => this.props.navigation.navigate('GetUserChit')}  >
+          <Text style={styles.customBtnText}> View my Chitts</Text>
+        </TouchableOpacity> 
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress={() => this.props.navigation.navigate('Search')}  >
+          <Text style={styles.customBtnText}> Search for a user</Text>
+        </TouchableOpacity> 
 
 
 

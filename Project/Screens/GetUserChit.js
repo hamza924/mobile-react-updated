@@ -26,7 +26,7 @@ export default class App extends React.Component{
         this.state=
         {
             isloading:true,
-            recent_chit:null
+            chits:null,
     
     
         }
@@ -34,19 +34,19 @@ export default class App extends React.Component{
         
     }
 
- /*   componentDidMount(){
+ async componentDidMount(){
 
-      // let val = await AsyncStorage.getItem('token');
-      // let data = JSON.parse(val);
+     let val = await AsyncStorage.getItem('token');
+      let data = JSON.parse(val);
 
         
-        return fetch('http://localhost:3333/api/v0.0.5/user/'+data.id)
-        .then((response) => response.text())
+        return fetch('http://10.0.2.2:3333/api/v0.0.5/user/'+data.id)
+        .then((response) => response.json())
         .then((responseJson) =>{
 
             this.setState({
                 isloading:false,
-                recent_chit:responseJson.recent_chits,
+                chits:responseJson.recent_chits,
             })
         })
 
@@ -56,7 +56,7 @@ export default class App extends React.Component{
         });
     }
 
-    */
+    
 
     _getid = async() =>{
 
@@ -100,6 +100,8 @@ export default class App extends React.Component{
         .then((res) => {
 
             this.setState({
+              isloading:false,
+              recent_chit:res.family_name,
                 
             })
            
@@ -119,13 +121,45 @@ export default class App extends React.Component{
 
   render(){
 
-   
 
+    
+   
+  
+
+
+    if(this.state.isloading){
+      return(
+        <View>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    else{
+      let chits = this.state.chits.map((val,key) =>{
+        return <View key ={key} style = {styles.item}>
+          <Text>{val.chit_content}</Text>
+        </View>
+  
+      });
 
     return(
 
+      
+        <ScrollView showsVerticalScrollIndicator={false}>
       <View style = {styles.container}>
-        <Text style = {styles.text}>Viewing My Chitts</Text>
+        {chits}
+      </View>
+      </ScrollView>
+    
+
+
+
+
+
+/*
+      <View style = {styles.container}>
+      <Text style = {styles.text}>Viewing My Chitts</Text>
 
         
         <TouchableOpacity
@@ -134,14 +168,17 @@ export default class App extends React.Component{
           <Text style={styles.customBtnText}>Retrieve</Text>
         </TouchableOpacity>
 
+        
 
 
          
 
 
       </View>
-    )
+      */
+    );
     
+    }
 
     
   }
@@ -175,6 +212,17 @@ const styles = StyleSheet.create({
       text:{
           fontSize:30,
           fontWeight:'bold',
+      },
+      item:{
+
+        flex:1,
+        alignSelf:'stretch',
+        margin:30,
+        alignItems:'center',
+        justifyContent:'center',
+        borderBottomWidth:1,
+        borderBottomColor:'#007aff',
+        fontSize:20,
       }
       
   });
