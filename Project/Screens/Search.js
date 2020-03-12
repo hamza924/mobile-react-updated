@@ -33,6 +33,9 @@ export default class App extends React.Component{
             isloading:true,
 
             result:null,
+            isloading2:false,
+            user_follower_result:null,
+            user_following_result:null,
 
     
     
@@ -215,8 +218,8 @@ export default class App extends React.Component{
           var ok = response.ok;
 
           if(ok){
-            alert('YAY OK');
-            return response.text();
+            //alert('YAY OK');
+            return response.json();
           }
 
           else{
@@ -227,7 +230,9 @@ export default class App extends React.Component{
         })
         .then((responseJson) =>{
 
-          alert(responseJson);
+         // const data = JSON.parse(responseJson);
+
+          //alert(responseJson);
             
          
             //alert(responseJson);
@@ -240,6 +245,14 @@ export default class App extends React.Component{
             })
             */
             //alert(val.user_id);
+
+            this.setState({
+
+
+              isloading:false,
+              user_follower_result:responseJson.user_id,
+
+            })
 
             
         })
@@ -287,7 +300,7 @@ export default class App extends React.Component{
         })
         .then((responseJson) =>{
 
-          alert(responseJson);
+          //alert(responseJson);
             
          
             //alert(responseJson);
@@ -383,9 +396,23 @@ export default class App extends React.Component{
         </View>
 
         
+
+        
   
       });
 
+     /* var followers = this.state.user_follower_result.map((val,key) =>{
+
+        return<View key = {key} style = {styles.item}>
+          
+          <Text style = {styles.text}>User Id:{val.user_id}</Text>
+
+        </View>
+
+          
+
+      });
+*/
     
     return(
       <ScrollView>
@@ -393,6 +420,8 @@ export default class App extends React.Component{
         
         
         {chits}
+
+     
         
 
 
@@ -409,6 +438,7 @@ export default class App extends React.Component{
     )
 
     }
+    
 
     
   }
