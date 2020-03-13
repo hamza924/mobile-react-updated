@@ -31,11 +31,14 @@ export default class App extends React.Component{
             result_email:'',
             result_family_name:'',
             isloading:true,
-
+            is:false,
             result:null,
             isloading2:false,
-            user_follower_result:null,
-            user_following_result:null,
+            user_follower_result:[],
+            user_following_result:[],
+
+            fol:'',
+            following:'',
 
     
     
@@ -196,7 +199,7 @@ export default class App extends React.Component{
 
     }
 
-    _handlepress3 = async (value)=>{
+    _handlepress3 = async (value,val2)=>{
 
       //alert(val);
 
@@ -234,7 +237,7 @@ export default class App extends React.Component{
 
           //alert(responseJson);
             
-         
+          alert('THIS IS SECOND ONE');
             //alert(responseJson);
 
          /*   this.setState({
@@ -249,8 +252,10 @@ export default class App extends React.Component{
             this.setState({
 
 
-              isloading:false,
-              user_follower_result:responseJson.user_id,
+              isloading:true,
+              user_follower_result:responseJson,
+              fol:val2
+             
 
             })
 
@@ -266,7 +271,7 @@ export default class App extends React.Component{
 
     }
 
-    _handlepress4 = async (value)=>{
+    _handlepress4 = async (value,val2)=>{
 
       //alert(val);
 
@@ -289,7 +294,7 @@ export default class App extends React.Component{
 
           if(ok){
             alert('YAY OK');
-            return response.text();
+            return response.json();
           }
 
           else{
@@ -300,7 +305,7 @@ export default class App extends React.Component{
         })
         .then((responseJson) =>{
 
-          //alert(responseJson);
+         
             
          
             //alert(responseJson);
@@ -313,6 +318,18 @@ export default class App extends React.Component{
             })
             */
             //alert(val.user_id);
+
+            this.setState({
+
+
+              isloading:true,
+             user_following_result:responseJson,
+              following:val2
+             
+
+            })
+
+
 
             
         })
@@ -334,6 +351,57 @@ export default class App extends React.Component{
     let name = this.state.search_name;
 
     if(this.state.isloading){
+
+       var followers = this.state.user_follower_result.map((val,key) =>{
+        
+       
+        
+        return(
+        
+        
+        <View key = {key} style = {styles.item}>
+          
+        <Text style = {styles.text}>{this.state.fol} is followed by </Text>
+          
+          <Text style = {styles.text}>Username:{val.given_name}</Text>
+          <Text style = {styles.text}>User Id:{val.user_id}</Text>
+
+          
+
+        </View>
+        
+        
+        )
+          
+
+      });
+
+      var following = this.state.user_following_result.map((val,key) =>{
+        
+       
+        
+        return(
+        
+        
+        <View key = {key} style = {styles.item}>
+          
+        <Text style = {styles.text}>{this.state.following} is following </Text>
+          
+          <Text style = {styles.text}>Username:{val.given_name}</Text>
+          <Text style = {styles.text}>User Id:{val.user_id}</Text>
+
+          
+
+        </View>
+        
+        
+        )
+          
+
+      });
+
+
+
         return(
             <View style = {styles.container}>
         <Text style = {styles.text}>Search for a user</Text>
@@ -355,11 +423,25 @@ export default class App extends React.Component{
           onPress = {this._handlepress.bind(this)}  >
           <Text style={styles.customBtnText}>Sign Up</Text>
         </TouchableOpacity> 
+        <ScrollView>
+        
+       {followers}
+       {following}
+      
 
+        </ScrollView>
         </View>
-        )
-    }else if(!this.state.isloading){
 
+        )
+
+        
+
+        
+
+
+    }else  {
+
+      
     var chits = this.state.result.map((val,key) =>{
         
         return <View key ={key} style = {styles.item}>
@@ -380,13 +462,14 @@ export default class App extends React.Component{
 
         <TouchableOpacity
           style={styles.customBtnBG}
-          onPress = {this._handlepress3.bind(this,val.user_id)}  >
+          onPress = {this._handlepress3.bind(this,val.user_id,val.given_name)}  >
+         
           <Text style={styles.customBtnText}>View Followers</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.customBtnBG}
-          onPress = {this._handlepress4.bind(this,val.user_id)}  >
+          onPress = {this._handlepress4.bind(this,val.user_id,val.given_name)}  >
           <Text style={styles.customBtnText}>View Following</Text>
         </TouchableOpacity>
 
@@ -399,6 +482,54 @@ export default class App extends React.Component{
 
         
   
+      });
+
+      const followers = this.state.user_follower_result.map((val,key) =>{
+        
+       
+        
+        return(
+        
+        
+        <View key = {key} style = {styles.item}>
+          
+        <Text style = {styles.text}>{this.state.fol} is followed by </Text>
+          
+          <Text style = {styles.text}>Username:{val.given_name}</Text>
+          <Text style = {styles.text}>User Id:{val.user_id}</Text>
+
+          
+
+        </View>
+        
+        
+        )
+          
+
+      });
+
+      const following = this.state.user_following_result.map((val,key) =>{
+        
+       
+        
+        return(
+        
+        
+        <View key = {key} style = {styles.item}>
+          
+        <Text style = {styles.text}>{this.state.following} is following </Text>
+          
+          <Text style = {styles.text}>Username:{val.given_name}</Text>
+          <Text style = {styles.text}>User Id:{val.user_id}</Text>
+
+          
+
+        </View>
+        
+        
+        )
+          
+
       });
 
      /* var followers = this.state.user_follower_result.map((val,key) =>{
@@ -420,6 +551,7 @@ export default class App extends React.Component{
         
         
         {chits}
+        
 
      
         
@@ -436,8 +568,18 @@ export default class App extends React.Component{
       </View>
       </ScrollView>
     )
+    
+     
+    
+    
 
+    
     }
+    
+
+
+    
+     
     
 
     
