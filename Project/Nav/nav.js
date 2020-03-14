@@ -10,6 +10,8 @@ import GetChit from '../Screens/GetAllChit';
 import GetUserChit from '../Screens/GetUserChit';
 import Search from '../Screens/Search';
 
+import UpdateAccount from '../Screens/UpdateAccount';
+
 
 
 
@@ -35,6 +37,9 @@ const Screens = {
     },
     Search:{
         screen:Search
+    },
+    UpdateAccount:{
+        screen:UpdateAccount
     }
     
     

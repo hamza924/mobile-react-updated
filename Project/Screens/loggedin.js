@@ -135,6 +135,89 @@ alert('Invalid email/Password');
 
 
 
+_handlepress_Logout = async () =>{
+
+  //var val = await AsyncStorage.getItem('token');
+
+  let val = await AsyncStorage.getItem('token');
+  let data = JSON.parse(val);
+  //alert(data.token +' ' + data.id);
+
+  //var t = await AsyncStorage.getItem('token');
+  //var data = JSON.parse(t);
+  //var d  = data.token;
+
+  //alert(d);
+
+
+  fetch('http://10.0.2.2:3333/api/v0.0.5/logout', {
+    method: 'POST',
+    headers: {
+   
+    'X-Authorization': data.token,
+
+   },
+   
+})
+.then((response) => {
+
+
+
+
+      var ok = response.ok;
+      if(ok){
+           alert('200');
+           this.deletetoken(data.token);
+          this.props.navigation.navigate('Home');
+      return response.text();
+      }
+      else{
+
+  alert('ERORR2');
+  }
+
+})
+
+
+.then((res) => {
+
+
+
+
+// if(res.status === 200){
+
+ 
+ // }
+ // else{
+ //   alert(res);
+ // }
+
+ //alert(res);
+
+
+
+ 
+})
+.catch((error) => {
+alert('Invalid email/Password');
+});
+
+}
+
+ deletetoken = async(val) =>{
+
+  try {
+    await AsyncStorage.removeItem(key);
+    return true;
+  }
+  catch(exception) {
+    return false;
+}
+
+}
+
+
+
 
   render(){
     return(
@@ -171,6 +254,20 @@ alert('Invalid email/Password');
           onPress={() => this.props.navigation.navigate('Search')}  >
           <Text style={styles.customBtnText}> Search for a user</Text>
         </TouchableOpacity> 
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress = {this._handlepress_Logout.bind(this)}  >
+          <Text style={styles.customBtnText}>Logout</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress = {() => this.props.navigation.navigate('UpdateAccount')}  >
+          <Text style={styles.customBtnText}>Update Account</Text>
+        </TouchableOpacity>
+
+      
 
 
 
