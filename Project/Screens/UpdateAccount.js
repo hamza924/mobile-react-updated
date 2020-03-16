@@ -27,8 +27,8 @@ export default class App extends React.Component{
         this.state=
         {
             isloading:true,
-            given_name:'',
-            family_name:'',
+            givenname:'',
+            familyname:'',
             email_:'',
             password:'',
 
@@ -54,9 +54,9 @@ export default class App extends React.Component{
    
                this.setState({
                    isloading:false,
-                   given_name:responseJson.given_name,
-                   family_name:responseJson.family_name,
-                   email:responseJson.email,
+                   givenname:responseJson.given_name,
+                   familyname:responseJson.family_name,
+                   email_:responseJson.email,
                })
            })
    
@@ -83,10 +83,11 @@ export default class App extends React.Component{
           },
 
           body: JSON.stringify({
-            give_name:this.state.edited_give_name,
-            family_name:this.state.family_name,
-            email:this.state.edited_email,
-            password:this.state.password,
+           given_name: this.state.givenname,
+           family_name: this.state.familyname,
+           email: this.state.email_,
+           password: this.state.password,
+           
             }),
 
       })
@@ -101,7 +102,7 @@ export default class App extends React.Component{
           }
 
           else{
-            alert('Seems like you are already following them');
+            alert('Seems like you are already following them' +response);
           }
 
 
@@ -150,35 +151,41 @@ export default class App extends React.Component{
 
             <TextInput
 
-            defaultValue={this.state.given_name}
+            defaultValue={this.state.givenname}
 
-            onChangeText = {(val) => this.setState({edited_give_name:val})}
-
-            style={styles.input}/>
-
-            <TextInput
-
-            defaultValue={this.state.family_name}
-
-            onChangeText = {(val) => this.setState({family_name:val})}
+            onChangeText = {(val) => this.setState({givenname:val})}
 
             style={styles.input}/>
 
             <TextInput
 
-            defaultValue={this.state.email}
+            defaultValue={this.state.familyname}
 
-            onChangeText = {(val) => this.setState({edited_email:val})}
+            
+
+            onChangeText = {(val) => this.setState({familyname:val})}
 
             style={styles.input}/>
 
             <TextInput
 
-            placeholder='Password'
+            defaultValue={this.state.email_}
+
+            onChangeText = {(val) => this.setState({email_:val})}
+
+            style={styles.input}/>
+
+            <TextInput
+
+            placeholder="Password"
 
             onChangeText = {(val) => this.setState({password:val})}
 
-            style={styles.input}/>
+            style={styles.input}
+            
+            secureTextEntry = {true}/>
+
+          
 
 
 <TouchableOpacity

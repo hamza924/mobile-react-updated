@@ -10,7 +10,11 @@ import {
   StatusBar,
   Button,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage,
+  ActivityIndicator,
+  
+
 } from 'react-native';
 
 
@@ -18,15 +22,80 @@ import {
 
 export default class App extends React.Component{
 
+  constructor(props){
+    super(props);
+
+    this.state=
+    {
+        isloading:true,
+        chits:[],
+        
+
+
+    }
+
+    
+}
+
+async componentDidMount(){
+
+  let val = await AsyncStorage.getItem('token');
+   let data = JSON.parse(val);
+
+     
+     return fetch('http://10.0.2.2:3333/api/v0.0.5/chits')
+     .then((response) => response.json())
+     .then((responseJson) =>{
+
+         this.setState({
+             isloading:false,
+             chits:responseJson,
+            
+            
+         })
+     })
+
+     .catch((error) =>{
+         alert(error);
+
+     });
+ }
+
 
 
 
   render(){
+
+    if(this.state.isloading){
+      return(
+      <View style = {styles.container}>
+        <ActivityIndicator size="large"/>
+      </View>
+      )
+    }
+
+    else{
+
+      let chits = this.state.chits.map((val,key) =>{
+        return <View key ={key} style = {styles.item}>
+          <Text style = {styles.text}>Given name: {val.user.given_name}</Text>
+          <Text style = {styles.text}>Chitt: {val.chit_content}</Text>
+          <Text style = {styles.text}> User ID: {val.user.user_id}</Text>
+          
+          
+        </View>
+  
+      });
+
+      
+
+
+
     return(
 
       <View style = {styles.container}>
-        <Text style = {styles.text}>Welcome to the Chittr Mobile Assignment!</Text>
-
+        
+        <Text style = {styles.headingtext}>Login or Sign up to submit your own chitt</Text>
         
 
 
@@ -43,11 +112,16 @@ export default class App extends React.Component{
           <Text style={styles.customBtnText}>SignUp </Text>
         </TouchableOpacity> 
 
+        <ScrollView>
+         {chits}
+         
+        </ScrollView>
+
 
       </View>
     )
 
-    
+    }
   }
 
 
@@ -77,8 +151,23 @@ const styles = StyleSheet.create({
       },
 
       text:{
-          fontSize:30,
+          fontSize:20,
           fontWeight:'bold',
-      }
+      },
+      item:{
+
+        flex:1,
+        alignSelf:'stretch',
+        margin:30,
+        alignItems:'center',
+        justifyContent:'center',
+        borderBottomWidth:3,
+        borderBottomColor:'#007aff',
+        fontSize:20,
+      },
+      headingtext:{
+        fontSize:21,
+        fontWeight:'bold',
+    },
       
   });

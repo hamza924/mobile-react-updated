@@ -138,7 +138,7 @@ export default class App extends React.Component{
     else{
       let chits = this.state.chits.map((val,key) =>{
         return <View key ={key} style = {styles.item}>
-          <Text>{val.chit_content}</Text>
+          <Text style = {styles.text}>{val.chit_content}</Text>
         </View>
   
       });
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
         margin:30,
         alignItems:'center',
         justifyContent:'center',
-        borderBottomWidth:1,
+        borderBottomWidth:3,
         borderBottomColor:'#007aff',
         fontSize:20,
       }

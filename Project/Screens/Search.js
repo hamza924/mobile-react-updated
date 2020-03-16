@@ -39,6 +39,7 @@ export default class App extends React.Component{
 
             fol:'',
             following:'',
+            chits:[],
 
     
     
@@ -342,6 +343,26 @@ export default class App extends React.Component{
 
 
     }
+
+    _handlepress5 = async(val) =>{
+
+      fetch('http://10.0.2.2:3333/api/v0.0.5/user/'+val)
+        .then((response) => response.json())
+        .then((responseJson) =>{
+
+            this.setState({
+                isloading:true,
+                chits:responseJson.recent_chits,
+            })
+        })
+
+        .catch((error) =>{
+            alert(error);
+
+        });
+
+
+    }
     
     
 
@@ -400,6 +421,13 @@ export default class App extends React.Component{
 
       });
 
+      let chits = this.state.chits.map((val,key) =>{
+        return <View key ={key} style = {styles.item}>
+          <Text style = {styles.text}>{val.chit_content}</Text>
+        </View>
+  
+      });
+
 
 
         return(
@@ -427,6 +455,7 @@ export default class App extends React.Component{
         
        {followers}
        {following}
+       {chits}
       
 
         </ScrollView>
@@ -471,6 +500,12 @@ export default class App extends React.Component{
           style={styles.customBtnBG}
           onPress = {this._handlepress4.bind(this,val.user_id,val.given_name)}  >
           <Text style={styles.customBtnText}>View Following</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress = {this._handlepress5.bind(this,val.user_id)}  >
+          <Text style={styles.customBtnText}>View Chitts</Text>
         </TouchableOpacity>
 
 
@@ -631,7 +666,7 @@ const styles = StyleSheet.create({
         margin:30,
         alignItems:'center',
         justifyContent:'center',
-        borderBottomWidth:1,
+        borderBottomWidth:3,
         borderBottomColor:'#007aff',
         fontSize:20,
       },
