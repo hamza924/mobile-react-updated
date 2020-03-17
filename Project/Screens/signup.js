@@ -92,7 +92,7 @@ export default class App extends React.Component{
 
         
 
-        <Text style={styles.text} >Given Name</Text>
+        
 
         <TextInput
 
@@ -102,7 +102,7 @@ export default class App extends React.Component{
 
         style={styles.input}/>
 
-        <Text style={styles.text} >Family Name</Text>   
+         
         <TextInput
 
             placeholder="FAMILY NAME"
@@ -111,7 +111,7 @@ export default class App extends React.Component{
 
             style={styles.input}/>
 
-            <Text style={styles.text} >Email</Text>
+            
 
             <TextInput
 
@@ -122,7 +122,6 @@ export default class App extends React.Component{
 
             style={styles.input}/>
 
-            <Text style={styles.text} >Password</Text>
 
             <TextInput
 
@@ -156,25 +155,31 @@ export default class App extends React.Component{
 
 const styles = StyleSheet.create({
     container: {
-     // flex:1,
+      flex:1,
     justifyContent: "center",
       alignItems: "center"
     },
   
-    /* Here, style the text of your button */
+    
       customBtnText: {
           fontSize: 24,
           fontWeight: '400',
           color: "#fff",
+          textAlign:"center",
       },
   
-    /* Here, style the background of your button */
+   
       customBtnBG: {
       backgroundColor: "#007aff",
       marginTop:30,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      borderRadius: 50
+      borderRadius: 50,
+      alignSelf: 'stretch',
+      // paddingLeft:20,
+      // paddingRight:20,
+       marginLeft:50,
+       marginRight:50,
       },
 
       text:{
@@ -187,9 +192,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         padding: 4,
         fontSize: 18,
-        borderWidth: 1,
+        borderWidth: 3,
         alignSelf: 'stretch',
-        borderColor: '#48bbec'
+        borderColor: '#007aff',
+        marginLeft:20,
+        marginRight:20,
+        marginTop:20,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 50
       },
       
   });

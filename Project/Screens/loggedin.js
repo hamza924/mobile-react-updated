@@ -225,23 +225,13 @@ alert('Invalid email/Password');
       <View style = {styles.container}>
         
 
-      <Text style = {styles.text}>Upload a Chitt Below No more than 141 characters</Text>
-
       
-      <TextInput
 
-      placeholder="Chitt"
-
-      onChangeText = {(val) => this.setState({chit_content:val})}
-
-      style={styles.input}/>
-
-      
         <TouchableOpacity
           style={styles.customBtnBG}
-          onPress = {this.handlepress.bind(this)}  >
-          <Text style={styles.customBtnText}>Send</Text>
-        </TouchableOpacity>
+          onPress={() => this.props.navigation.navigate('sendChit')}  >
+          <Text style={styles.customBtnText}> Upload Chitt</Text>
+        </TouchableOpacity> 
 
         <TouchableOpacity
           style={styles.customBtnBG}
@@ -255,16 +245,18 @@ alert('Invalid email/Password');
           <Text style={styles.customBtnText}> Search for a user</Text>
         </TouchableOpacity> 
 
-        <TouchableOpacity
-          style={styles.customBtnBG}
-          onPress = {this._handlepress_Logout.bind(this)}  >
-          <Text style={styles.customBtnText}>Logout</Text>
-        </TouchableOpacity>
+      
 
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress = {() => this.props.navigation.navigate('UpdateAccount')}  >
           <Text style={styles.customBtnText}>Update Account</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.customBtnBG}
+          onPress = {this._handlepress_Logout.bind(this)}  >
+          <Text style={styles.customBtnText}>Logout</Text>
         </TouchableOpacity>
 
       
@@ -285,25 +277,33 @@ alert('Invalid email/Password');
 
 const styles = StyleSheet.create({
     container: {
-      //flex:1,
+      flex:1,
     justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      //alignSelf: 'stretch',
     },
   
-    /* Here, style the text of your button */
+   
       customBtnText: {
           fontSize: 24,
           fontWeight: '400',
           color: "#fff",
+          textAlign:"center",
       },
   
-    /* Here, style the background of your button */
+   
       customBtnBG: {
       backgroundColor: "#007aff",
       marginTop:30,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      borderRadius: 50
+      borderRadius: 50,
+      alignSelf: 'stretch',
+     // paddingLeft:20,
+     // paddingRight:20,
+      marginLeft:50,
+      marginRight:50,
+
       },
 
       text:{

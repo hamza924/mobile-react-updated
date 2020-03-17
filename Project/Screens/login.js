@@ -108,13 +108,7 @@ export default class App extends React.Component{
 
    
 
-    //alert(data.token +' '+ d1 );
-   // }
-   // else{
-   //   alert(res);
-   // }
-
-   //alert(res);
+    
 
 
 
@@ -132,7 +126,7 @@ alert('Invalid email/Password');
       <View style = {styles.container}>
         <Text style = {styles.text}>Login</Text>
 
-        <Text style={styles.text} >Email</Text>
+        
 
         <TextInput
 
@@ -142,7 +136,7 @@ alert('Invalid email/Password');
 
         style={styles.input}/>
 
-        <Text style={styles.text} >Password</Text>
+        
 
         <TextInput
 
@@ -159,7 +153,7 @@ alert('Invalid email/Password');
         <TouchableOpacity
           style={styles.customBtnBG}
           onPress = {this.handlepress.bind(this)}  >
-          <Text style={styles.customBtnText}>Sign Up</Text>
+          <Text style={styles.customBtnText}>Login</Text>
         </TouchableOpacity> 
 
 
@@ -192,20 +186,26 @@ const styles = StyleSheet.create({
       alignItems: "center"
     },
   
-    /* Here, style the text of your button */
+   
       customBtnText: {
           fontSize: 24,
           fontWeight: '400',
           color: "#fff",
+          textAlign:"center",
       },
   
-    /* Here, style the background of your button */
+   
       customBtnBG: {
       backgroundColor: "#007aff",
       marginTop:30,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      borderRadius: 50
+      borderRadius: 50,
+      alignSelf: 'stretch',
+      // paddingLeft:20,
+      // paddingRight:20,
+       marginLeft:50,
+       marginRight:50,
       },
 
       text:{
@@ -218,9 +218,15 @@ const styles = StyleSheet.create({
         marginTop: 10,
         padding: 4,
         fontSize: 18,
-        borderWidth: 1,
+        borderWidth: 3,
         alignSelf: 'stretch',
-        borderColor: '#48bbec'
+        borderColor: '#007aff',
+        marginLeft:20,
+        marginRight:20,
+        marginTop:20,
+        paddingHorizontal: 20,
+      paddingVertical: 10,
+      borderRadius: 50
       },
       
   });

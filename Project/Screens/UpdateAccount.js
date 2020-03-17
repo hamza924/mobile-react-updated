@@ -175,6 +175,8 @@ export default class App extends React.Component{
 
             style={styles.input}/>
 
+          <Text style = {styles.textHeading}>Password will remain the same if not changed</Text>
+
             <TextInput
 
             placeholder="Password"
@@ -218,6 +220,7 @@ const styles = StyleSheet.create({
           fontSize: 24,
           fontWeight: '400',
           color: "#fff",
+          textAlign:"center",
       },
   
     /* Here, style the background of your button */
@@ -226,21 +229,43 @@ const styles = StyleSheet.create({
       marginTop:30,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      borderRadius: 50
+      borderRadius: 50,
+      alignSelf: 'stretch',
+      // paddingLeft:20,
+      // paddingRight:20,
+       marginLeft:50,
+       marginRight:50,
       },
 
       text:{
           fontSize:30,
           fontWeight:'bold',
+          marginTop:20,
+          
       },
       input: {
         height: 50,
         marginTop: 10,
         padding: 4,
         fontSize: 18,
-        borderWidth: 1,
+        borderWidth: 3,
         alignSelf: 'stretch',
-        borderColor: '#48bbec'
+        borderColor: '#007aff',
+        marginLeft:20,
+        marginRight:20,
+        marginTop:20,
+        paddingHorizontal: 20,
+      paddingVertical: 10,
+      borderRadius: 50
       },
+
+      textHeading:{
+        fontSize:24,
+        fontWeight:'bold',
+        marginTop:20,
+        marginRight:20,
+        marginLeft:20,
+        textAlign:"center",
+    },
       
   });

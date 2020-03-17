@@ -16,6 +16,7 @@ import {
   
 
 } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 
 
@@ -95,10 +96,15 @@ async componentDidMount(){
 
       <View style = {styles.container}>
         
-        <Text style = {styles.headingtext}>Login or Sign up to submit your own chitt</Text>
+        
+        
         
 
-
+        <ScrollView>
+        <Text style = {styles.textHeading}>Chittr App</Text>
+         {chits}
+         
+        </ScrollView>
 
         <TouchableOpacity
           style={styles.customBtnBG}
@@ -112,10 +118,7 @@ async componentDidMount(){
           <Text style={styles.customBtnText}>SignUp </Text>
         </TouchableOpacity> 
 
-        <ScrollView>
-         {chits}
-         
-        </ScrollView>
+       
 
 
       </View>
@@ -134,20 +137,27 @@ const styles = StyleSheet.create({
       alignItems: "center"
     },
   
-    /* Here, style the text of your button */
+   
       customBtnText: {
           fontSize: 24,
           fontWeight: '400',
           color: "#fff",
+          textAlign:"center",
       },
   
-    /* Here, style the background of your button */
+    
       customBtnBG: {
       backgroundColor: "#007aff",
       marginTop:30,
+      marginBottom:15,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      borderRadius: 50
+      borderRadius: 50,
+      alignSelf: 'stretch',
+      // paddingLeft:20,
+      // paddingRight:20,
+       marginLeft:50,
+       marginRight:50,
       },
 
       text:{
@@ -158,7 +168,7 @@ const styles = StyleSheet.create({
 
         flex:1,
         alignSelf:'stretch',
-        margin:30,
+        margin:50,
         alignItems:'center',
         justifyContent:'center',
         borderBottomWidth:3,
@@ -169,5 +179,11 @@ const styles = StyleSheet.create({
         fontSize:21,
         fontWeight:'bold',
     },
-      
+    textHeading:{
+      fontSize:30,
+      fontWeight:'bold',
+      textAlign:"left",
+      marginTop:20,
+      marginLeft:50,
+  },
   });
